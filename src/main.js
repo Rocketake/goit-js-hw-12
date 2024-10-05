@@ -20,8 +20,6 @@ let currentPage = 1;
 let searchQuery = null;
 let pages = 0;
 
-loadmoreButton.classList.remove('is-hidden');
-
 async function formSubmit(event) {
   event.preventDefault();
 
