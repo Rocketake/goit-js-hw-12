@@ -36,8 +36,6 @@ async function formSubmit(event) {
   loadmoreButton.classList.add('is-hidden');
   loader.classList.add('loader');
 
-  console.log(loader);
-
   try {
     const { articles, totalResults } = await fetchImages(
       searchQuery,
@@ -58,7 +56,6 @@ async function formSubmit(event) {
     iziToast.error({
       position: 'topLeft',
       message: error.message,
-      iconUrl: errorIcon,
     });
   } finally {
     form.reset();
