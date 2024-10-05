@@ -1,18 +1,144 @@
-/**
-  |============================
-  | include css partials with
-  | default @import url()
-  |============================
-*/
-/* Common styles */
 @import url('./reset.css');
-@import url('./base.css');
-@import url('./container.css');
-@import url('./animations.css');
 
-/* Sections style */
-@import url('./header.css');
-@import url('./vite-promo.css');
-@import url('./badges.css');
-@import url('./back-link.css');
-@import url('./footer.css');
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-bottom-color: #ff3d00;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate (-50%, -50%);
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 32px;
+}
+
+.form-control {
+  width: 272px;
+  height: 40px;
+
+  border-radius: 4px;
+  border: 1px solid rgb(128, 128, 128);
+  background: rgb(255, 255, 255);
+
+  color: rgb(128, 128, 128);
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.form-control::placeholder {
+  padding-left: 16px;
+}
+
+.form-control:hover {
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.btn {
+  width: 91px;
+  height: 40px;
+
+  padding: 8px 16px 8px 16px;
+
+  border-radius: 8px;
+  border: none;
+  background: rgb(78, 117, 255);
+
+  color: rgb(255, 255, 255);
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.btn:hover {
+  background: rgb(108, 140, 255);
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.gallery-img {
+  width: 360px;
+  height: 240px;
+}
+
+.gallery-item {
+  width: 360px;
+  height: 280px;
+
+  border: 1px solid rgb(128, 128, 128);
+}
+
+.info-wrapper {
+  display: flex;
+  justify-content: space-around;
+  gap: 28px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: rgb(46, 47, 66);
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.info-item span {
+  font-weight: 400;
+}
+
+.btn-load-more {
+  width: 125px;
+  height: 40px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 32px;
+
+  padding: 8px 16px 8px 16px;
+
+  border-radius: 8px;
+  background: rgb(78, 117, 255);
+  border: none;
+
+  color: rgb(255, 255, 255);
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.is-hidden {
+  display: none;
+}
