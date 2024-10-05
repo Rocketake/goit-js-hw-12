@@ -54,7 +54,7 @@ async function formSubmit(event) {
     loader.classList.remove('loader');
 
     iziToast.error({
-      position: 'topLeft',
+      position: 'topRight',
       message: error.message,
     });
   } finally {
@@ -79,7 +79,7 @@ async function formLoadMore() {
       iziToast.info({
         title: '',
         message: "We're sorry, but you've reached the end of search results.",
-        position: 'topLeft',
+        position: 'topRight',
       });
       return;
     }
