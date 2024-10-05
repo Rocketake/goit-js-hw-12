@@ -20,6 +20,8 @@ let currentPage = 1;
 let searchQuery = null;
 let pages = 0;
 
+loadmoreButton.classList.remove('is-hidden');
+
 async function formSubmit(event) {
   event.preventDefault();
 
@@ -86,7 +88,10 @@ async function formLoadMore() {
 
     loadmoreButton.classList.remove('is-hidden');
   } catch (error) {
-    console.log(error);
+    iziToast.error({
+      position: 'topRight',
+      message: error.message,
+    });
   } finally {
     loader.classList.remove('loader');
   }
