@@ -6,14 +6,10 @@
   border: 5px solid #fff;
   border-bottom-color: #ff3d00;
   border-radius: 50%;
-  display: inline-block;
+  display: block;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate (-50%, -50%);
+  margin: 0 auto;
 }
 
 @keyframes rotation {
@@ -23,6 +19,10 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.is-hidden {
+  display: none;
 }
 
 .search-form {

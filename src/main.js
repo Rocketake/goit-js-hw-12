@@ -11,7 +11,7 @@ const formListener = document.querySelector('.js-search-form');
 
 const loadmoreButton = document.querySelector('.js-btn-load-more');
 
-const loader = document.querySelector('.loader-js');
+export const loader = document.querySelector('.loader-js');
 
 formListener.addEventListener('submit', formSubmit);
 loadmoreButton.addEventListener('click', formLoadMore);
@@ -34,24 +34,22 @@ async function formSubmit(event) {
   }
 
   loadmoreButton.classList.add('is-hidden');
-  loader.classList.add('loader');
+  loader.classList.remove('is-hidden');
 
   try {
-    const { articles, totalResults } = await fetchImages(
-      searchQuery,
-      currentPage
-    );
+    const { hits, totalHits } = await fetchImages(searchQuery, currentPage);
 
-    pages = Math.ceil(totalResults / PER_PAGE);
+    pages = Math.ceil(totalHits / PER_PAGE);
 
-    loader.classList.remove('loader');
+    loader.classList.add('is-hidden');
 
-    createMarkup(articles);
+    createMarkup(hits);
 
     loadmoreButton.classList.remove('is-hidden');
   } catch (error) {
     loadmoreButton.classList.add('is-hidden');
-    loader.classList.remove('loader');
+    loader.classList.add('is-hidden');
+    console.log(error);
 
     iziToast.error({
       position: 'topRight',
@@ -67,11 +65,11 @@ async function formLoadMore() {
 
   try {
     loadmoreButton.classList.add('is-hidden');
-    loader.classList.add('loader');
+    loader.classList.remove('is-hidden');
 
-    const { articles } = await fetchImages(searchQuery, currentPage);
+    const { hits } = await fetchImages(searchQuery, currentPage);
 
-    createMarkup(articles);
+    createMarkup(hits);
 
     windowScroll();
 
@@ -91,7 +89,7 @@ async function formLoadMore() {
       message: error.message,
     });
   } finally {
-    loader.classList.remove('loader');
+    loader.classList.add('is-hidden');
   }
 }
 

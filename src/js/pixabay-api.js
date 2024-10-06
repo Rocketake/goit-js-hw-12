@@ -4,7 +4,9 @@ export const PER_PAGE = 15;
 
 import axios from 'axios';
 
-export async function fetchImages(searchQuery, currentPage = 1) {
+import { loader } from '../main.js';
+
+export async function fetchImages(searchQuery, currentPage) {
   const urlParams = new URLSearchParams({
     key: API_KEY,
     q: searchQuery,
@@ -12,23 +14,25 @@ export async function fetchImages(searchQuery, currentPage = 1) {
     orientation: 'horizontal',
     safesearch: true,
     per_page: PER_PAGE,
+    page: currentPage,
   });
 
-  const url = `${BASE_URL}?key=${API_KEY}&${urlParams}`;
+  const url = `${BASE_URL}?${urlParams}`;
 
   const {
-    data: { articles, totalResults, status, message = '' },
+    data: { hits, totalHits },
+    status,
   } = await axios.get(url);
 
-  if (status !== 'ok') {
-    loader.classList.toggle('loader');
-    throw new Error(message);
+  if (status !== 200) {
+    loader.classList.add('is-hidden');
+    throw new Error('Server is not responding properly');
   }
 
-  if (articles.length === 0) {
-    loader.classList.toggle('loader');
+  if (hits.length === 0) {
+    loader.classList.add('is-hidden');
     throw new Error('No photos found');
   }
 
-  return { articles, totalResults };
+  return { hits, totalHits };
 }
